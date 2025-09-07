@@ -25,11 +25,6 @@ low_parallax05_b5_pm5_2mass_ebv.fits
 rg_gaia2mass_expanded.fits
 
 # Plots and outputs
-*.png
-*.pdf
-*.eps
-*.ps
-plots/
 output/
 
 # IDL compiled
