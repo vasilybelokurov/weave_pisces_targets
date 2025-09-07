@@ -15,8 +15,9 @@ Traditional RGB giant selection relies on fixed cuts in color-magnitude and prop
 
 ### The Solution
 The optimizer uses 2D histograms to visualize stellar density ratios between:
-- **Target region**: Pisces survey box (RA=[-45°,+15°], Dec=[-20°,0°])
-- **Comparison regions**: Offset boxes designed to sample background populations
+- **New target region**: Improved survey box (RA=[-20°,+10°], Dec=[-22°,+7°]) - better aligned with RR Lyrae overdensity
+- **Comparison region**: Offset box (RA=[-30°,+20°], Dec=[-32°,+17°]) with target region excluded
+- **Old survey region**: Original box (RA=[-45°,+15°], Dec=[-20°,0°]) for comparison
 
 ## Implementation
 
@@ -36,10 +37,11 @@ The optimizer generates density ratio maps showing:
 
 ## Key Findings
 
-### Current Selection Efficiency
-- **Global sample**: 721,246 RGB candidates (relaxed selection)
-- **Survey region**: 2,998 targets (0.4% efficiency)
-- **Background subtraction**: Reveals genuine Pisces overdensity
+### Current Selection Efficiency (New Target Region)
+- **Global sample**: 1,036,226 RGB candidates (clean + relaxed selection)
+- **New survey region**: 3,956 targets (0.4% efficiency) 
+- **Target density**: 16.4 targets per WEAVE pointing expected
+- **Background subtraction**: Reveals genuine Pisces overdensity in optimized region
 
 ### Parameter Sensitivity
 The optimizer reveals that:
@@ -51,12 +53,13 @@ The optimizer reveals that:
 ## Critical Need for Exploration
 
 ### Why We Need to Revisit Selection
-The current RGB selection was derived from the original IDL pipeline but may not be optimal for several reasons:
+The current RGB selection was derived from the original IDL pipeline but has been updated with a new target region:
 
-1. **Expanded catalog**: We now have access to the expanded RG catalog with improved photometry
-2. **Better distance estimates**: Updated isochrone fitting and extinction corrections
-3. **Refined background models**: More sophisticated comparison region sampling
-4. **WEAVE constraints**: Instrument-specific magnitude and density requirements
+1. **Improved target region**: New box (RA=[-20°,+10°], Dec=[-22°,+7°]) better aligned with RR Lyrae overdensity
+2. **Expanded catalog**: Access to expanded RG catalog with improved photometry and 50x more candidates
+3. **Better distance estimates**: Updated isochrone fitting and extinction corrections  
+4. **Optimized comparison**: New background subtraction using offset comparison regions
+5. **WEAVE constraints**: Instrument-specific magnitude and density requirements
 
 ### Recommended Parameter Space Exploration
 
