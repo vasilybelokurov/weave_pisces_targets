@@ -10,7 +10,7 @@
 - Constrain the dynamical history and masses of both the Magellanic Clouds and Sagittarius dwarf
 
 **Observational Parameters:** 35 WEAVE pointings × 60 min exposures = 5 nights total (2 dark + 3 grey)
-**Target density:** ~1,400 distant red giants with G = 16-20.5 mag, distances 50-110 kpc
+**Target density:** 5,191 stellar targets across 4 categories with G = 13-18.5 mag, distances 30-110 kpc
 
 ## Scientific Context
 
@@ -42,17 +42,20 @@ Current spectroscopic data are extremely limited—only a handful of radial velo
 **Primary Targets (Priority 10):** Clean distant red giants (531 targets)
 - Parallax < 0.2 mas, RPM < 18.0, (BP-RP)₀ > 1.0, G₀ < 18.0, distance > 50 kpc
 
-**Secondary Targets (Priority 9):** Relaxed RGB selection (2,467 additional targets)  
-- Slightly relaxed cuts extending to G₀ < 18.5, distance > 30 kpc
+**Secondary Targets (Priority 9):** Additional relaxed RGB giants (2,467 targets)  
+- Parallax < 0.25 mas, RPM < 18.5, (BP-RP)₀ > 1.0, G₀ < 18.5, distance > 30 kpc
 
 **Tertiary Targets (Priority 8):** Blue horizontal branch stars (1,402 targets)
 - PS1 g > 18.0 mag for distance confirmation
 
-**Total sample:** 4,400 targets providing ~40 targets per WEAVE pointing
+**Quaternary Targets (Priority 7):** Gaia XP giants (791 targets)
+- ebv < 0.1, logg < 2.0, Teff < 5000K, [M/H] < -1.5, G < 17.0, RPM < 17.0
+
+**Total sample:** 5,191 targets providing ~14 targets per WEAVE pointing
 
 ### Expected Precision
-- **Radial velocities:** 5-6 km/s precision at G = 20.5 (dark time), G ≈ 20 (grey time)
-- **Metallicities:** ±0.3 dex precision
+- **Radial velocities:** ~1 km/s precision for kinematic analysis (G = 13-18.5)
+- **Metallicities:** [Fe/H] precision ~0.2 dex  
 - **α-element abundances:** Standard WEAVE pipeline output
 
 ## Science Impact & Legacy Value
@@ -70,7 +73,15 @@ Current spectroscopic data are extremely limited—only a handful of radial velo
 - Enable accurate correction for Magellanic perturbations in future surveys
 
 ### Legacy Dataset
-This program will deliver the most comprehensive spectroscopic mapping of distant halo stars (>50 kpc) to date, providing a valuable resource for stellar halo studies and serving as ground truth for theoretical models of galactic accretion.
+This program will deliver the most comprehensive spectroscopic mapping of distant halo stars (>30 kpc) to date, with multi-catalog target selection spanning RGB giants, BHB stars, and spectroscopically-confirmed giants. The resulting dataset provides a valuable resource for stellar halo studies and serves as ground truth for theoretical models of galactic accretion.
+
+### Repository and Data Products
+The complete target selection pipeline, including 4 Jupyter notebooks, parameter optimization tools, and visualization outputs, is publicly available at: https://github.com/vasilybelokurov/weave_pisces_targets
+
+**Key outputs:**
+- `Pisces_021023.fits`: Final target catalog (5,191 targets) with priorities and metadata
+- `gaiadr3_rrab_data.fits`: RR Lyrae reference catalog for survey validation  
+- Comprehensive documentation and methodology comparison with original IDL pipeline
 
 ## Team Expertise
 **Principal Investigator:** Prof. Alis Deason (Durham University)  
