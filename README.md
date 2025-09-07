@@ -23,12 +23,15 @@ The Pisces Plume is a prominent stellar overdensity in the outer Galactic halo (
 ## Repository Structure
 
 ```
-weave_pisces/
+weave_pisces_targets/
 ├── notebooks/
 │   ├── pisces_targets_updated.ipynb      # Main target selection pipeline
 │   ├── pisces_targets.ipynb              # Original implementation
 │   ├── gaia_edr3_2mass_query.ipynb      # Expanded RGB catalog creation
-│   └── pisces_rrlyrae_map.ipynb          # RR Lyrae analysis for context
+│   ├── pisces_rrlyrae_map.ipynb          # RR Lyrae analysis for context
+│   ├── cv_coord.py                       # Coordinate conversion utilities
+│   ├── pisces_targets.py                 # Python target selection module
+│   └── sphere_rotate.py                  # Spherical coordinate rotation
 ├── idl_reference/
 │   ├── gaia_edr3_targets_pisces_proposal.pro  # Original IDL pipeline
 │   └── low_parallax_query_2mass_ebv.pro       # Initial data query
@@ -38,8 +41,23 @@ weave_pisces/
 │   └── CLAUDE.md                        # Development workflow
 ├── proposals/
 │   ├── 2025B-2026A_CCI_ITP_Pisces.pdf  # WEAVE observing proposal
+│   ├── 2025B-2026A_CCI_ITP_Pisces.docx # Original proposal document
+│   ├── 2025B-2026A_CCI_ITP_Pisces.xml  # Proposal metadata
+│   ├── Belokurov_etal_2019.pdf          # Pisces Plume discovery paper
 │   └── Trager_Scott_WEAVEstatus-20250525-short.pdf  # WEAVE status
-└── README.md
+├── plots/
+│   ├── pisces_all_targets_combined.png  # Combined target distribution
+│   ├── pisces_*_fullsky.png             # Full-sky target maps
+│   ├── pisces_*_zoom.png                # Survey region zoom plots
+│   ├── pisces_clean_rgb_sgr_*.png       # Sagittarius coordinate projections
+│   ├── rg_selection_optimizer*.png      # Parameter optimization plots
+│   └── pisces_targets_distribution.png  # Target category breakdown
+├── Pisces_021023.fits                   # Final target catalog (5,191 targets)
+├── gaiadr3_rrab_data.fits              # RR Lyrae reference catalog
+├── CLAUDE.md                            # Development workflow
+├── PROJECT_DESCRIPTION.md               # Project overview
+├── LICENSE                              # MIT license
+└── README.md                            # This file
 ```
 
 ## Target Categories
