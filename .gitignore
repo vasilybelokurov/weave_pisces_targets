@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.env
+venv/
+.venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Data files (large)
+*.fits
+*.idl
+*.dat
+*.txt
+*.csv
+gaiadr3_rrab_data.fits
+low_parallax05_b5_pm5_2mass_ebv.fits
+rg_gaia2mass_expanded.fits
+
+# Plots and outputs
+*.png
+*.pdf
+*.eps
+*.ps
+plots/
+output/
+
+# IDL compiled
+*.sav
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.ico
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Local configuration files
+config_local.py
+credentials.txt
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Log files
+*.log
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
