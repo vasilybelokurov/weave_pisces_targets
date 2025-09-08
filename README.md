@@ -363,7 +363,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Dr. Alis J. Deason** (Institute for Computational Cosmology, Durham University)  
   - Email: alis.j.deason@durham.ac.uk
 
-- **WEAVE Consortium**: [https://ingconfluence.ing.iac.es/confluence/display/WEAV](https://ingconfluence.ing.iac.es/confluence/display/WEAV)
+**WEAVE Consortium**: [https://ingconfluence.ing.iac.es/confluence/display/WEAV](https://ingconfluence.ing.iac.es/confluence/display/WEAV)
 
 ## Acknowledgments
 
