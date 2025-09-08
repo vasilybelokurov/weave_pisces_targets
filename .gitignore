@@ -14,15 +14,18 @@ ENV/
 .ipynb_checkpoints/
 */.ipynb_checkpoints/*
 
-# Data files (large)
-*.fits
+# Data files (large - specific exclusions)
 *.idl
 *.dat
-*.txt
 *.csv
 gaiadr3_rrab_data.fits
 low_parallax05_b5_pm5_2mass_ebv.fits
 rg_gaia2mass_expanded.fits
+
+# Text files (but not requirements.txt)
+*.txt
+!requirements.txt
+!weave_tool/requirements.txt
 
 # Plots and outputs
 output/
