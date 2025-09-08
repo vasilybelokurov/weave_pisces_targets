@@ -159,13 +159,14 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 ## Results
 
 The pipeline produces a target catalog (`Pisces_YYMMDD.fits`) with:
-- **5,191 stellar targets** across 4 categories
+- **6,149 stellar targets** across 4 categories
 - **Optimized for WEAVE**: Magnitude limits, spatial distribution
 - **Science priorities**: Hierarchical ranking system
 - **Complete metadata**: Gaia source IDs, coordinates, selection flags
 
 Expected observational outcomes:
-- **~490 targets per night** (5 nights total)
+- **~16.4 targets per OB** (35 pointings total)
+- **~115 targets per night** (5 nights total)
 - **Magnitude range**: G = 13-18.5, suitable for WEAVE
 - **Radial velocity precision**: ~1 km/s for kinematic analysis
 - **Metallicity estimates**: [Fe/H] precision ~0.2 dex
