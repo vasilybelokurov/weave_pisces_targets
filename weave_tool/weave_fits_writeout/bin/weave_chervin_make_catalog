@@ -1,0 +1,65 @@
+#!/usr/bin/env python
+import weave_chervin.merge_cat as ME
+import weave_chervin.make_wasp_cat as MA
+import argparse
+import pickle
+import glob
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Validate the catalog')
+    parser.add_argument('filename',
+                        type=str,
+                        nargs='+',
+                        help='input catalogs filename')
+    parser.add_argument('--output',
+                        type=str,
+                        required=True,
+                        help='output filename')
+    parser.add_argument('--progtemps',
+                        type=str,
+                        required=True,
+                        help='configuration; can be separated by commas')
+    parser.add_argument('--targcat', type=str, default=None, help='TARGCAT')
+    parser.add_argument('--targsurvey', type=str, default=None, help='TARGSVY')
+    parser.add_argument('--nofinal',
+                        action='store_true',
+                        dest='nofinal',
+                        default=False)
+    parser.add_argument('--program',
+                        type=str,
+                        default='shared',
+                        help='configuration')
+    parser.add_argument('--trimester',
+                        type=str,
+                        required=True,
+                        help='Trimester i.e. 2021A1')
+    parser.add_argument('--gaia_version',
+                        type=int,
+                        required=True,
+                        help='Gaia version',
+                        default=None)
+
+    args = parser.parse_args()
+    progtemps = args.progtemps.split(',')
+    ofile = args.output
+    if args.nofinal:
+        if ofile[-4:] != '.pkl':
+            raise RuntimeError('if using nofinal the output must be pkl')
+    fields_fits = None
+    tab, meta, cata_meta = ME.doit(args.filename,
+                                   progtemps=progtemps,
+                                   program=args.program,
+                                   footprint_file=fields_fits,
+                                   targcat=args.targcat,
+                                   targsurvey=args.targsurvey,
+                                   GAIA_REV=args.gaia_version,
+                                   trimester=args.trimester)
+    if args.nofinal:
+        with open(ofile, 'wb') as fp:
+            pickle.dump((tab, meta, cata_meta, args.trimester), fp)
+    else:
+        MA.write_conv_file(tab,
+                           meta,
+                           cata_meta,
+                           ofile,
+                           trimester=args.trimester,
+                           targsurvey=args.targsurvey)

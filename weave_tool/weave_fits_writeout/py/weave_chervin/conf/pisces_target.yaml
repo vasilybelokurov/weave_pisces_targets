@@ -1,0 +1,92 @@
+### Pisces-specific target configuration for WEAVE
+### Based on target.yaml but customized for Pisces survey
+
+object_bitmask:
+  MSTO: 0
+  GIANTS: 1
+  BHB: 2
+  RRLYRAE: 3
+  EMP: 4
+  HVS: 5
+  STREAMS: 6
+  DWARFS: 7
+  FILLER: 8
+  STREAMSWIDE: 9
+  BS: 10
+  EXTRASVMSTO: 11
+  EXTRASVGIANTS: 12
+  GAIAPOE: 13
+  GAIARPM: 14
+  PISCES_CLEAN_RGB: 15    # Clean RGB Giants (Priority 10)
+  PISCES_RELAX_RGB: 16    # Additional Relaxed RGB Giants (Priority 9) 
+  PISCES_BHB: 17          # BHB Stars (Priority 8)
+  PISCES_XP_GIANTS: 18    # Gaia XP Giants (Priority 7)
+  PISCES_RRL: 19          # RR Lyrae (Priority 8)
+
+targprog:
+  MSTO: MSTO
+  GIANTS: GIANT
+  BHB: BHB
+  RRLYRAE: RRL
+  EMP: EMP
+  HVS: HVS
+  STREAMS: STR
+  DWARFS: DSPH
+  FILLER: FIL
+  STREAMSWIDE: STRW
+  BS: BS
+  EXTRASVMSTO: MSTOSV
+  EXTRASVGIANTS: GIANTSV
+  GAIAPOE: POE
+  GAIARPM: RPM
+  PISCES_CLEAN_RGB: PRGB
+  PISCES_RELAX_RGB: PRGBR
+  PISCES_BHB: PBHB
+  PISCES_XP_GIANTS: PXPG
+  PISCES_RRL: PRRL
+  
+# Priority mapping for Pisces targets
+priority:
+  MSTO: [2, 2]
+  GIANTS: [8, 8]
+  BHB: [10, 10]
+  RRLYRAE: [10, 10]
+  EMP: [10, 10]
+  HVS: [10, 10]
+  DWARFS: [1, 10]
+  FILLER: [1, 1]
+  STREAMS: [1, 10]
+  STREAMSWIDE: [10, 10]
+  SKY: [1,1]
+  BS: [8,8]
+  EXTRASVMSTO: [1,1]
+  EXTRASVGIANTS: [1,1]
+  GAIAPOE: [8, 8]
+  GAIARPM: [8, 8]
+  PISCES_CLEAN_RGB: [10, 10]     # Highest priority
+  PISCES_RELAX_RGB: [9, 9]       # Second priority
+  PISCES_BHB: [8, 8]             # Third priority
+  PISCES_XP_GIANTS: [7, 7]       # Lowest priority
+  PISCES_RRL: [8, 8]             # Same as BHB
+  
+aps_flag_map:
+  MSTO: STAR_FGK
+  GIANTS: STAR_FGK
+  BHB: STAR_BHB
+  RRLYRAE: STAR_RRL
+  EMP: STAR_EMP
+  HVS: STAR_FGK
+  STREAMS: STAR_FGK
+  DWARFS: STAR_FGK
+  FILLER: STAR_FGK
+  STREAMSWIDE: STAR_FGK
+  BS: STAR_BHB
+  EXTRASVMSTO: STAR_FGK
+  EXTRASVGIANTS: STAR_FGK
+  GAIAPOE: STAR_FGK
+  GAIARPM: STAR_FGK
+  PISCES_CLEAN_RGB: STAR_FGK
+  PISCES_RELAX_RGB: STAR_FGK
+  PISCES_BHB: STAR_BHB
+  PISCES_XP_GIANTS: STAR_FGK
+  PISCES_RRL: STAR_RRL

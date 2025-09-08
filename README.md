@@ -23,7 +23,7 @@ The Pisces Plume is a prominent stellar overdensity in the outer Galactic halo (
 ## Repository Structure
 
 ```
-weave_pisces_targets/
+weave_pisces/
 ├── notebooks/
 │   ├── pisces_targets_updated.ipynb      # Main target selection pipeline
 │   ├── pisces_targets.ipynb              # Original implementation
@@ -32,6 +32,13 @@ weave_pisces_targets/
 │   ├── cv_coord.py                       # Coordinate conversion utilities
 │   ├── pisces_targets.py                 # Python target selection module
 │   └── sphere_rotate.py                  # Spherical coordinate rotation
+├── weave_tool/                           # Self-contained WEAVE catalog generation
+│   ├── enrich_pisces_catalog.py          # Database enrichment script
+│   ├── weave_pisces_script.sh            # Main generation script
+│   ├── weave_fits_writeout/              # Adapted WEAVE chervin tool
+│   ├── weave_pisces_env/                 # Local Python environment
+│   ├── requirements.txt                  # Dependencies
+│   └── docs/                             # Tool documentation
 ├── idl_reference/
 │   ├── gaia_edr3_targets_pisces_proposal.pro  # Original IDL pipeline
 │   └── low_parallax_query_2mass_ebv.pro       # Initial data query
@@ -103,35 +110,141 @@ The pipeline selects five main categories of stellar tracers:
 - **Area**: 853 deg² (spherical)  
 - **Instrument**: WEAVE multi-object spectrograph (WHT)
 - **Field of View**: 2° diameter per pointing
-<<<<<<< HEAD
 - **Coverage**: 35 pointings (12.9% of survey area)
 - **Expected**: ~55 targets per pointing
+
+## WEAVE Catalog Generation Tool
+
+This repository includes a **complete WEAVE-compatible catalog generation tool** that transforms basic Pisces target catalogs into full 78-column WEAVE fiber catalogs ready for spectroscopic observations.
+
+### What the Tool Does
+
+The WEAVE tool **enriches** your basic 6-column Pisces catalog:
+
+**Input** (`Pisces_021023.fits`):
+- Basic columns: `SOURCE_ID`, `RA`, `DEC`, `GAIA_REV_ID`, `PS1_ID`, `PRIORITY`
+- 14,952 Pisces targets selected by priority
+
+**Output** (`Pisces_WEAVE_enhanced_021023.fits`):
+- **78 columns** with complete stellar data and WEAVE metadata
+- **Cross-matched photometry** from Gaia EDR3, PS1, SDSS databases
+- **Extinction corrections** using SFD dust maps
+- **WEAVE survey format** ready for fiber allocation planning
+
+### Key Enhancements Added
+
+1. **Astrometry & Photometry**: Gaia EDR3 positions, proper motions, parallaxes, G/BP/RP magnitudes + errors
+2. **Multi-band Photometry**: PS1 gri, SDSS ugriz magnitudes where available  
+3. **WEAVE Metadata**: Survey identifiers, target classifications, program templates
+4. **Quality Control**: Coordinate precision, extinction corrections, finite value validation
+5. **Database Integration**: Live queries to wsdb.ast.cam.ac.uk for latest stellar data
+
+### Usage
+
+**One-command catalog generation:**
+```bash
+cd weave_tool
+./weave_pisces_script.sh ../Pisces_021023.fits
+# Processing ~15-30 minutes for 14,952 targets
+# Output: WS2025B2-028-PISCES.fits → moved to project root
+```
+
+**Or from Jupyter notebook:**
+```python
+# Add this cell to pisces_targets_updated.ipynb
+result = subprocess.run(
+    ['./weave_pisces_script.sh', '../Pisces_021023.fits'],
+    cwd='../weave_tool'
+)
+```
+
+### Tool Components
+
+All WEAVE-related files are organized in the **`weave_tool/`** directory:
+
+- **`weave_pisces_script.sh`** - Main catalog generation script
+- **`weave_fits_writeout/`** - Adapted WEAVE chervin tool for Pisces survey  
+- **`weave_pisces_env/`** - Isolated Python environment with dependencies
+- **`enrich_pisces_catalog.py`** - Database enrichment utilities
+- **`requirements.txt`** - Complete dependency list with SFD dust maps
+- **`docs/`** - Detailed setup and troubleshooting documentation
+
+### Requirements
+
+- **Database access**: wsdb.ast.cam.ac.uk (uses system PGUSER/PGPASSWORD)
+- **Python 3.8+** with scientific computing stack
+- **SFD dust maps**: Downloaded automatically on first run (~128 MB)
+- **Processing time**: ~2 seconds per target (network dependent)
+
+See **[WEAVE Tool Setup](weave_tool/docs/WEAVE_TOOL_SETUP.md)** for complete documentation.
 
 ## Installation & Usage
 
 ### Requirements
-- Python 3.8+
-- Jupyter Notebook
-- Standard scientific Python stack (numpy, pandas, matplotlib, astropy)
-- Optional: sqlutilpy for database queries
 
-### Quick Start
+**For Target Selection:**
+- Python 3.8+ with Jupyter Notebook
+- Standard scientific Python stack (numpy, pandas, matplotlib, astropy)
+
+**For WEAVE Catalog Generation:**
+- Access to wsdb.ast.cam.ac.uk database (with PGUSER/PGPASSWORD configured)
+- Internet connection for SFD dust map downloads (~128 MB, one-time)
+- Processing time: ~15-30 minutes for full catalog
+
+### Quick Start - Target Selection
 
 1. **Clone the repository**:
 ```bash
 git clone https://github.com/vasilybelokurov/weave_pisces_targets.git
-cd weave_pisces_targets
+cd weave_pisces
 ```
 
-2. **Install dependencies**:
-```bash
-pip install -r requirements.txt  # Will be added
-```
-
-3. **Run main pipeline**:
+2. **Run target selection pipeline**:
 ```bash
 jupyter notebook notebooks/pisces_targets_updated.ipynb
 ```
+
+**Output**: `Pisces_021023.fits` (14,952 targets, 6 columns)
+
+### Quick Start - WEAVE Catalog Generation
+
+**After completing target selection above:**
+
+1. **Generate enhanced WEAVE catalog**:
+```bash
+cd weave_tool
+./weave_pisces_script.sh ../Pisces_021023.fits
+```
+
+**Output**: `Pisces_WEAVE_enhanced_021023.fits` (14,952 targets, 78 columns)
+
+### Complete Workflow
+
+```bash
+# 1. Target Selection (Jupyter notebook)
+jupyter notebook notebooks/pisces_targets_updated.ipynb
+# → Creates Pisces_021023.fits
+
+# 2. WEAVE Enhancement (automated)
+cd weave_tool  
+./weave_pisces_script.sh ../Pisces_021023.fits
+# → Creates Pisces_WEAVE_enhanced_021023.fits
+
+# 3. Ready for WEAVE observation planning!
+```
+
+### Advanced Usage
+
+**Custom target catalogs**: Replace `Pisces_021023.fits` with your own 6-column catalog:
+- Required columns: `SOURCE_ID`, `RA`, `DEC`, `GAIA_REV_ID`, `PS1_ID`, `PRIORITY`
+- Format: FITS binary table
+
+**Database configuration**: Tool uses system environment variables:
+- `PGUSER` - Your wsdb username  
+- `PGPASSWORD` - Your wsdb password
+- `PGHOST` - Set to `wsdb.ast.cam.ac.uk` (automatic in script)
+
+**Troubleshooting**: See `weave_tool/docs/` for detailed setup guides
 
 ### Data Requirements
 
@@ -169,19 +282,36 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 
 ## Results
 
-The pipeline produces a target catalog (`Pisces_021023.fits`) with:
-- **14,952 stellar targets** across 5 categories in optimized survey region
-- **Optimized for WEAVE**: Magnitude limits (G = 13-20), exceptional target density
-- **Science priorities**: Hierarchical ranking system (priorities 7-10)
-- **Complete metadata**: Gaia source IDs, coordinates, selection flags
+The complete pipeline produces two complementary catalogs:
 
-Expected observational outcomes:
+### Target Selection Catalog (`Pisces_021023.fits`)
+- **14,952 stellar targets** across 5 categories in optimized survey region
+- **6 essential columns**: SOURCE_ID, RA, DEC, GAIA_REV_ID, PS1_ID, PRIORITY
+- **Science priorities**: Hierarchical ranking system (priorities 7-10)
+- **Size**: ~710 KB, ready for target selection analysis
+
+### Enhanced WEAVE Catalog (`Pisces_WEAVE_enhanced_021023.fits`)  
+- **Same 14,952 targets** with complete observational metadata
+- **78 detailed columns**: Full Gaia EDR3 astrometry, multi-band photometry, WEAVE survey parameters
+- **Database-enriched**: Live cross-matches with Gaia, PS1, SDSS catalogs via wsdb.ast.cam.ac.uk
+- **Extinction-corrected**: SFD dust map corrections for precise stellar parameters
+- **WEAVE-ready**: Complete format compliance for fiber allocation and spectroscopic pipeline
+- **Size**: ~12 MB, production-ready for WEAVE observations
+
+### Key Enhancements in WEAVE Catalog
+- **Precision astrometry**: Gaia proper motions (±0.1 mas/yr), parallaxes (±0.1 mas)
+- **Multi-band photometry**: G, BP, RP (Gaia) + gri (PS1) + ugriz (SDSS where available)
+- **Survey metadata**: Target classifications, program templates (11331), observation modes
+- **Quality assurance**: Error propagation, finite value validation, coordinate precision
+
+### Expected Observational Outcomes
 - **~1,495 targets per night** (5 nights total at 35 pointings)
-- **Magnitude range**: G = 13-20, suitable for WEAVE spectroscopy
+- **Magnitude range**: G = 13-20, optimized for WEAVE spectroscopy
 - **Target density**: 55.0 targets per pointing (approaches WEAVE fiber limits)
 - **Sample size**: 3.25x larger than previous selection for robust statistics
-- **Radial velocity precision**: ~1 km/s for kinematic analysis
+- **Radial velocity precision**: ~1 km/s for kinematic analysis  
 - **Metallicity estimates**: [Fe/H] precision ~0.2 dex
+- **Survey efficiency**: Ready for immediate WEAVE observation planning
 
 ## Documentation
 

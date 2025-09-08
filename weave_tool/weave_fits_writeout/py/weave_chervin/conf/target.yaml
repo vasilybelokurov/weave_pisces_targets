@@ -1,0 +1,75 @@
+### IF YOU add anothe object category
+### you must update all the structures
+### 
+
+
+object_bitmask:
+  MSTO: 0
+  GIANTS: 1
+  BHB: 2
+  RRLYRAE: 3
+  EMP: 4
+  HVS: 5
+  STREAMS: 6
+  DWARFS: 7
+  FILLER: 8
+  STREAMSWIDE: 9
+  BS: 10
+  EXTRASVMSTO: 11
+  EXTRASVGIANTS: 12
+  GAIAPOE: 13
+  GAIARPM: 14
+
+targprog:
+  MSTO: MSTO
+  GIANTS: GIANT
+  BHB: BHB
+  RRLYRAE: RRL
+  EMP: EMP
+  HVS: HVS
+  STREAMS: STR
+  DWARFS: DSPH
+  FILLER: FIL
+  STREAMSWIDE: STRW
+  BS: BS
+  EXTRASVMSTO: MSTOSV
+  EXTRASVGIANTS: GIANTSV
+  GAIAPOE: POE
+  GAIARPM: RPM
+  
+  # These are ranges, i.e. the internal priorities will be scaled between
+  # these
+priority:
+  MSTO: [2, 2]
+  GIANTS: [8, 8]
+  BHB: [10, 10]
+  RRLYRAE: [10, 10]
+  EMP: [10, 10]
+  HVS: [10, 10]
+  DWARFS: [1, 10]
+  FILLER: [1, 1]
+  STREAMS: [1, 10]
+  STREAMSWIDE: [10, 10]
+  SKY: [1,1]
+  BS: [8,8]
+  EXTRASVMSTO: [1,1]
+  EXTRASVGIANTS: [1,1]
+  GAIAPOE: [8, 8]
+  GAIARPM: [8, 8]
+  
+aps_flag_map:
+  MSTO: STAR_FGK
+  GIANTS: STAR_FGK
+  BHB: STAR_BHB
+  RRLYRAE: STAR_RRL
+  EMP: STAR_EMP
+  HVS: STAR_FGK
+  STREAMS: STAR_FGK
+  DWARFS: STAR_FGK
+  FILLER: STAR_FGK
+  STREAMSWIDE: STAR_FGK
+  BS: STAR_BHB
+  EXTRASVMSTO: STAR_FGK
+  EXTRASVGIANTS: STAR_FGK
+  GAIAPOE: STAR_FGK
+  GAIARPM: STAR_FGK

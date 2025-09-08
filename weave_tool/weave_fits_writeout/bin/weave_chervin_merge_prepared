@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+import weave_galr.merge_cat as ME
+import weave_galr.make_wasp_cat as MA
+import astropy.table as atpy
+import argparse
+import pickle
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Validate the catalog')
+    parser.add_argument('filename',
+                        type=str,
+                        nargs='+',
+                        help='input catalogs filename')
+    parser.add_argument('--output',
+                        type=str,
+                        required=True,
+                        help='output filename')
+    parser.add_argument('--targsurvey',
+                        type=str,
+                        required=True,
+                        help='targsurvey')
+    args = parser.parse_args()
+    tabs = []
+    metas = {}
+    cata_metas = []
+    last_trimester = None
+    for curf in args.filename:
+        with open(curf, 'rb') as fp:
+            tab, meta, cata_meta, trimester = pickle.load(fp)
+            if last_trimester is not None:
+                if last_trimester != trimester:
+                    raise RuntimeError("Trimesters don't match")
+            last_trimester = trimester
+            cata_metas.extend(cata_meta)
+            for k, v in meta.items():
+                if k not in metas:
+                    metas[k] = v
+                else:
+                    if metas[k] != v:
+                        raise Exception(
+                            'The meta values do not match %s %s %s' %
+                            (k, v, metas[k]))
+            tabs.append(tab)
+    tabs = atpy.vstack(tabs)
+
+    MA.write_conv_file(tabs,
+                       metas,
+                       cata_metas,
+                       args.output,
+                       trimester=trimester,
+                       targsurvey=args.targsurvey
+    )

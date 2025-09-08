@@ -1,0 +1,4 @@
+# Pisces-specific general configuration
+# Adjusted for Pisces survey parameters
+
+sky_density: 55  # targets per sq deg (much higher than default 100 due to concentrated survey)
