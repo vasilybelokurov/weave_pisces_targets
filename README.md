@@ -65,39 +65,40 @@ weave_pisces_targets/
 The pipeline selects four main categories of stellar tracers:
 
 ### 1. Clean RGB Giants
-- **Selection**: `parallax < 0.2 mas, RPM < 18.0, (BP-RP)₀ > 1.0, G₀ < 18.0, dist > 50 kpc`
-- **Count**: 549 targets in survey region
+- **Selection**: `parallax < 0.2 mas, RPM < 19.0, (BP-RP)₀ > 1.0, G₀ < 19.5, dist > 25 kpc`
+- **Count**: 2,464 targets in optimized survey region
 - **Priority**: 10 (highest)
 - **Purpose**: High-confidence distant giants for kinematic analysis
 
-### 2. Relaxed RGB Giants  
-- **Selection**: `parallax < 0.25 mas, RPM < 18.5, (BP-RP)₀ > 1.0, G₀ < 18.5, dist > 30 kpc`
-- **Count**: 3,407 additional targets
+### 2. Additional Relaxed RGB Giants  
+- **Selection**: `parallax < 0.25 mas, RPM < 20.0, (BP-RP)₀ > 0.9, G₀ < 20.0, dist > 20 kpc`
+- **Count**: 1,095 additional targets
 - **Priority**: 9
-- **Purpose**: Expanded sample for increased statistics
+- **Purpose**: Expanded sample with relaxed cuts for increased statistics
 
 ### 3. Blue Horizontal Branch Stars
 - **Selection**: `PS1 g > 18.0` (distance proxy)
-- **Count**: 1,402 targets  
+- **Count**: 794 targets  
 - **Priority**: 8
 - **Purpose**: Alternative distance tracers and population indicators
 
 ### 4. Gaia XP Giants
 - **Selection**: `ebv < 0.1, logg < 2.0, Teff < 5000, [M/H] < -1.5, G < 17.0, RPM < 17.0`
-- **Count**: 791 targets
+- **Count**: 248 targets
 - **Priority**: 7
 - **Purpose**: Spectroscopically confirmed giants with known stellar parameters
 
-**Total**: 5,191 targets across 35 WEAVE pointings (2° diameter fields)
+**Total**: 4,601 targets across 35 WEAVE pointings (2° diameter fields)
 
 ## Survey Parameters
 
-- **Survey Region**: RA = [-45°, +15°], Dec = [-20°, 0°]
-- **Area**: 1,176 deg² (spherical)
+- **Optimized Survey Region**: RA = [-20°, +10°], Dec = [-22°, +7°] (aligned with RR Lyrae overdensity)
+- **Area**: 853 deg² (spherical)  
 - **Instrument**: WEAVE multi-object spectrograph (WHT)
 - **Field of View**: 2° diameter per pointing
-- **Coverage**: 35 pointings (9.4% of survey area)
-- **Expected**: ~16 targets per pointing
+<<<<<<< HEAD
+- **Coverage**: 35 pointings (12.9% of survey area)
+- **Expected**: ~17 targets per pointing
 
 ## Installation & Usage
 
@@ -139,6 +140,7 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 
 ### Scientific
 - **Multi-catalog integration**: Gaia EDR3, 2MASS, PS1, XP spectra
+- **Optimized survey region**: Data-driven selection aligned with RR Lyrae overdensity
 - **Rigorous selection criteria**: Parallax, proper motion, color-magnitude cuts
 - **Distance estimation**: Isochrone fitting using multiple stellar populations
 - **Extinction correction**: Wavelength-dependent corrections for accurate photometry
@@ -151,23 +153,24 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 - **Professional output**: FITS files with full metadata
 
 ### Analysis Tools
-- **RR Lyrae context mapping**: Survey region validation using Pisces Plume tracers
-- **Parameter space optimization**: 2D histograms comparing target/comparison regions
+- **RG Selection Optimizer**: Critical tool for data-driven parameter optimization using 2D histograms
+- **RR Lyrae context mapping**: Survey region validation using Pisces Plume tracers  
+- **Background subtraction**: Comparison with offset regions to reveal genuine overdensity
 - **Selection diagnostics**: Color-magnitude, reduced proper motion analysis
 - **Coverage analysis**: Expected targets per pointing based on surface density
 
 ## Results
 
-The pipeline produces a target catalog (`Pisces_YYMMDD.fits`) with:
-- **6,149 stellar targets** across 4 categories
-- **Optimized for WEAVE**: Magnitude limits, spatial distribution
-- **Science priorities**: Hierarchical ranking system
+The pipeline produces a target catalog (`Pisces_021023.fits`) with:
+- **4,601 stellar targets** across 4 categories in optimized survey region
+- **Optimized for WEAVE**: Magnitude limits (G = 13-20), spatial distribution
+- **Science priorities**: Hierarchical ranking system (priorities 7-10)
 - **Complete metadata**: Gaia source IDs, coordinates, selection flags
 
 Expected observational outcomes:
-- **~16.4 targets per OB** (35 pointings total)
-- **~115 targets per night** (5 nights total)
-- **Magnitude range**: G = 13-18.5, suitable for WEAVE
+- **~462 targets per night** (5 nights total at 35 pointings)
+- **Magnitude range**: G = 13-20, suitable for WEAVE spectroscopy
+- **Target density**: 16.9 targets per pointing (12.9% survey coverage)
 - **Radial velocity precision**: ~1 km/s for kinematic analysis
 - **Metallicity estimates**: [Fe/H] precision ~0.2 dex
 
@@ -175,6 +178,8 @@ Expected observational outcomes:
 
 Detailed documentation is provided in the `docs/` directory:
 
+- **[Project Description](docs/PROJECT_DESCRIPTION.md)**: Complete scientific overview and technical specifications
+- **[RG Optimizer](docs/RG_OPTIMIZER.md)**: Critical tool for RGB parameter optimization and validation
 - **[Notebook Comparison](docs/PISCES_TARGETS_COMPARISON.md)**: Evolution from original to updated pipeline
 - **[RGB Selection](docs/EXPANDED_RG_SELECTION.md)**: Methodology for expanded giant catalog
 - **[Development Workflow](docs/CLAUDE.md)**: Coding standards and practices
