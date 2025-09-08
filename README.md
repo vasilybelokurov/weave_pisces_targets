@@ -336,7 +336,7 @@ If you use this target selection pipeline in your research, please cite:
 
 ```bibtex
 @misc{weave_pisces_targets,
-  author = {Belokurov, Vasily and {WEAVE Pisces Team}},
+  author = {Belokurov, Vasily and Deason, Alis J. and {WEAVE Pisces Team}},
   title = {WEAVE Pisces Target Selection Pipeline},
   year = {2025},
   url = {https://github.com/vasilybelokurov/weave_pisces_targets},
@@ -357,8 +357,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-- **Lead**: Dr. Vasily Belokurov (Institute of Astronomy, Cambridge)
-- **Email**: vasily@ast.cam.ac.uk  
+**Co-Principal Investigators:**
+- **Dr. Vasily Belokurov** (Institute of Astronomy, Cambridge)
+  - Email: vasily@ast.cam.ac.uk
+- **Dr. Alis J. Deason** (Institute for Computational Cosmology, Durham University)  
+  - Email: alis.j.deason@durham.ac.uk
+
 - **WEAVE Consortium**: [https://ingconfluence.ing.iac.es/confluence/display/WEAV](https://ingconfluence.ing.iac.es/confluence/display/WEAV)
 
 ## Acknowledgments
