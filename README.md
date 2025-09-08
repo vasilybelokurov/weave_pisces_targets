@@ -36,6 +36,9 @@ weave_pisces_targets/
 │   ├── gaia_edr3_targets_pisces_proposal.pro  # Original IDL pipeline
 │   └── low_parallax_query_2mass_ebv.pro       # Initial data query
 ├── docs/
+│   ├── LATEST_CHANGES.md                # Major updates and 3.25x target increase analysis
+│   ├── PROJECT_DESCRIPTION.md           # Complete scientific overview
+│   ├── RG_OPTIMIZER.md                  # RGB parameter optimization tool guide
 │   ├── PISCES_TARGETS_COMPARISON.md     # Detailed notebook comparison
 │   ├── EXPANDED_RG_SELECTION.md         # RGB selection methodology
 │   └── CLAUDE.md                        # Development workflow
@@ -52,10 +55,8 @@ weave_pisces_targets/
 │   ├── pisces_clean_rgb_sgr_*.png       # Sagittarius coordinate projections
 │   ├── rg_selection_optimizer*.png      # Parameter optimization plots
 │   └── pisces_targets_distribution.png  # Target category breakdown
-├── Pisces_021023.fits                   # Final target catalog (5,191 targets)
+├── Pisces_021023.fits                   # Final target catalog (14,952 targets)
 ├── gaiadr3_rrab_data.fits              # RR Lyrae reference catalog
-├── CLAUDE.md                            # Development workflow
-├── PROJECT_DESCRIPTION.md               # Project overview
 ├── LICENSE                              # MIT license
 └── README.md                            # This file
 ```
