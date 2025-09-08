@@ -62,19 +62,19 @@ weave_pisces_targets/
 
 ## Target Categories
 
-The pipeline selects four main categories of stellar tracers:
+The pipeline selects five main categories of stellar tracers:
 
 ### 1. Clean RGB Giants
-- **Selection**: `parallax < 0.2 mas, RPM < 19.0, (BP-RP)₀ > 1.0, G₀ < 19.5, dist > 25 kpc`
-- **Count**: 2,464 targets in optimized survey region
+- **Selection**: `parallax < 0.2 mas, RPM < 19.5, (BP-RP)₀ > 1.0, G₀ < 19.5, dist > 25 kpc`
+- **Count**: 5,471 targets in optimized survey region
 - **Priority**: 10 (highest)
 - **Purpose**: High-confidence distant giants for kinematic analysis
 
 ### 2. Additional Relaxed RGB Giants  
-- **Selection**: `parallax < 0.25 mas, RPM < 20.0, (BP-RP)₀ > 0.9, G₀ < 20.0, dist > 20 kpc`
-- **Count**: 1,095 additional targets
+- **Selection**: `parallax < 0.25 mas, RPM < 20.0, (BP-RP)₀ > 0.9, G₀ < 20.0, dist > 15 kpc`
+- **Count**: 8,028 additional targets
 - **Priority**: 9
-- **Purpose**: Expanded sample with relaxed cuts for increased statistics
+- **Purpose**: Expanded sample with relaxed cuts for comprehensive halo coverage
 
 ### 3. Blue Horizontal Branch Stars
 - **Selection**: `PS1 g > 18.0` (distance proxy)
@@ -88,7 +88,13 @@ The pipeline selects four main categories of stellar tracers:
 - **Priority**: 7
 - **Purpose**: Spectroscopically confirmed giants with known stellar parameters
 
-**Total**: 4,601 targets across 35 WEAVE pointings (2° diameter fields)
+### 5. RR Lyrae Variables (RRab)
+- **Selection**: `distance_kpc > 30.0` (standard candles)
+- **Count**: 411 targets
+- **Priority**: 8
+- **Purpose**: Independent distance tracers and kinematic validation
+
+**Total**: 14,952 targets across 35 WEAVE pointings (2° diameter fields)
 
 ## Survey Parameters
 
@@ -98,7 +104,7 @@ The pipeline selects four main categories of stellar tracers:
 - **Field of View**: 2° diameter per pointing
 <<<<<<< HEAD
 - **Coverage**: 35 pointings (12.9% of survey area)
-- **Expected**: ~17 targets per pointing
+- **Expected**: ~55 targets per pointing
 
 ## Installation & Usage
 
@@ -139,9 +145,10 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 ## Key Features
 
 ### Scientific
-- **Multi-catalog integration**: Gaia EDR3, 2MASS, PS1, XP spectra
+- **Multi-catalog integration**: Gaia EDR3, 2MASS, PS1, XP spectra, expanded RGB catalog
 - **Optimized survey region**: Data-driven selection aligned with RR Lyrae overdensity
-- **Rigorous selection criteria**: Parallax, proper motion, color-magnitude cuts
+- **Five target populations**: RGB giants, BHB stars, XP giants, RR Lyrae variables
+- **Expanded sample size**: 5.7M global RGB candidates (5.7x larger than standard catalog)
 - **Distance estimation**: Isochrone fitting using multiple stellar populations
 - **Extinction correction**: Wavelength-dependent corrections for accurate photometry
 
@@ -162,15 +169,16 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 ## Results
 
 The pipeline produces a target catalog (`Pisces_021023.fits`) with:
-- **4,601 stellar targets** across 4 categories in optimized survey region
-- **Optimized for WEAVE**: Magnitude limits (G = 13-20), spatial distribution
+- **14,952 stellar targets** across 5 categories in optimized survey region
+- **Optimized for WEAVE**: Magnitude limits (G = 13-20), exceptional target density
 - **Science priorities**: Hierarchical ranking system (priorities 7-10)
 - **Complete metadata**: Gaia source IDs, coordinates, selection flags
 
 Expected observational outcomes:
-- **~462 targets per night** (5 nights total at 35 pointings)
+- **~1,495 targets per night** (5 nights total at 35 pointings)
 - **Magnitude range**: G = 13-20, suitable for WEAVE spectroscopy
-- **Target density**: 16.9 targets per pointing (12.9% survey coverage)
+- **Target density**: 55.0 targets per pointing (approaches WEAVE fiber limits)
+- **Sample size**: 3.25x larger than previous selection for robust statistics
 - **Radial velocity precision**: ~1 km/s for kinematic analysis
 - **Metallicity estimates**: [Fe/H] precision ~0.2 dex
 
@@ -178,6 +186,7 @@ Expected observational outcomes:
 
 Detailed documentation is provided in the `docs/` directory:
 
+- **[Latest Changes](docs/LATEST_CHANGES.md)**: Major updates and 3.25x target increase analysis
 - **[Project Description](docs/PROJECT_DESCRIPTION.md)**: Complete scientific overview and technical specifications
 - **[RG Optimizer](docs/RG_OPTIMIZER.md)**: Critical tool for RGB parameter optimization and validation
 - **[Notebook Comparison](docs/PISCES_TARGETS_COMPARISON.md)**: Evolution from original to updated pipeline
