@@ -66,13 +66,13 @@ The pipeline selects four main categories of stellar tracers:
 
 ### 1. Clean RGB Giants
 - **Selection**: `parallax < 0.2 mas, RPM < 18.0, (BP-RP)₀ > 1.0, G₀ < 18.0, dist > 50 kpc`
-- **Count**: 531 targets in survey region
+- **Count**: 549 targets in survey region
 - **Priority**: 10 (highest)
 - **Purpose**: High-confidence distant giants for kinematic analysis
 
 ### 2. Relaxed RGB Giants  
 - **Selection**: `parallax < 0.25 mas, RPM < 18.5, (BP-RP)₀ > 1.0, G₀ < 18.5, dist > 30 kpc`
-- **Count**: 2,467 additional targets
+- **Count**: 3,407 additional targets
 - **Priority**: 9
 - **Purpose**: Expanded sample for increased statistics
 
@@ -97,7 +97,7 @@ The pipeline selects four main categories of stellar tracers:
 - **Instrument**: WEAVE multi-object spectrograph (WHT)
 - **Field of View**: 2° diameter per pointing
 - **Coverage**: 35 pointings (9.4% of survey area)
-- **Expected**: ~14 targets per pointing
+- **Expected**: ~16 targets per pointing
 
 ## Installation & Usage
 
