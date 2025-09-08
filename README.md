@@ -62,7 +62,10 @@ weave_pisces/
 │   ├── pisces_clean_rgb_sgr_*.png       # Sagittarius coordinate projections
 │   ├── rg_selection_optimizer*.png      # Parameter optimization plots
 │   └── pisces_targets_distribution.png  # Target category breakdown
-├── Pisces_021023.fits                   # Final target catalog (14,952 targets)
+├── Pisces_021023.fits                   # Target catalog (14,952 targets) - Version 1
+├── Pisces_080925.fits                   # Target catalog (14,952 targets) - Latest version
+├── Pisces_WEAVE_enhanced_021023.fits    # Enhanced WEAVE catalog - Version 1  
+├── Pisces_WEAVE_enhanced_080925.fits    # Enhanced WEAVE catalog - Latest version
 ├── gaiadr3_rrab_data.fits              # RR Lyrae reference catalog
 ├── LICENSE                              # MIT license
 └── README.md                            # This file
@@ -121,11 +124,11 @@ This repository includes a **complete WEAVE-compatible catalog generation tool**
 
 The WEAVE tool **enriches** your basic 6-column Pisces catalog:
 
-**Input** (`Pisces_021023.fits`):
+**Input** (`Pisces_080925.fits` - latest version):
 - Basic columns: `SOURCE_ID`, `RA`, `DEC`, `GAIA_REV_ID`, `PS1_ID`, `PRIORITY`
 - 14,952 Pisces targets selected by priority
 
-**Output** (`Pisces_WEAVE_enhanced_021023.fits`):
+**Output** (`Pisces_WEAVE_enhanced_080925.fits`):
 - **78 columns** with complete stellar data and WEAVE metadata
 - **Cross-matched photometry** from Gaia EDR3, PS1, SDSS databases
 - **Extinction corrections** using SFD dust maps
@@ -144,16 +147,16 @@ The WEAVE tool **enriches** your basic 6-column Pisces catalog:
 **One-command catalog generation:**
 ```bash
 cd weave_tool
-./weave_pisces_script.sh ../Pisces_021023.fits
+./weave_pisces_script.sh ../Pisces_080925.fits
 # Processing ~15-30 minutes for 14,952 targets
-# Output: WS2025B2-028-PISCES.fits → moved to project root
+# Output: WS2025B2-028-PISCES.fits → moved to project root as Pisces_WEAVE_enhanced_080925.fits
 ```
 
 **Or from Jupyter notebook:**
 ```python
-# Add this cell to pisces_targets_updated.ipynb
+# Add this cell to pisces_targets_updated.ipynb (already integrated)
 result = subprocess.run(
-    ['./weave_pisces_script.sh', '../Pisces_021023.fits'],
+    ['./weave_pisces_script.sh', '../Pisces_080925.fits'],
     cwd='../weave_tool'
 )
 ```
@@ -204,7 +207,7 @@ cd weave_pisces
 jupyter notebook notebooks/pisces_targets_updated.ipynb
 ```
 
-**Output**: `Pisces_021023.fits` (14,952 targets, 6 columns)
+**Output**: `Pisces_080925.fits` (14,952 targets, 6 columns)
 
 ### Quick Start - WEAVE Catalog Generation
 
@@ -213,29 +216,29 @@ jupyter notebook notebooks/pisces_targets_updated.ipynb
 1. **Generate enhanced WEAVE catalog**:
 ```bash
 cd weave_tool
-./weave_pisces_script.sh ../Pisces_021023.fits
+./weave_pisces_script.sh ../Pisces_080925.fits
 ```
 
-**Output**: `Pisces_WEAVE_enhanced_021023.fits` (14,952 targets, 78 columns)
+**Output**: `Pisces_WEAVE_enhanced_080925.fits` (14,952 targets, 78 columns)
 
 ### Complete Workflow
 
 ```bash
 # 1. Target Selection (Jupyter notebook)
 jupyter notebook notebooks/pisces_targets_updated.ipynb
-# → Creates Pisces_021023.fits
+# → Creates Pisces_080925.fits
 
 # 2. WEAVE Enhancement (automated)
 cd weave_tool  
-./weave_pisces_script.sh ../Pisces_021023.fits
-# → Creates Pisces_WEAVE_enhanced_021023.fits
+./weave_pisces_script.sh ../Pisces_080925.fits
+# → Creates Pisces_WEAVE_enhanced_080925.fits
 
 # 3. Ready for WEAVE observation planning!
 ```
 
 ### Advanced Usage
 
-**Custom target catalogs**: Replace `Pisces_021023.fits` with your own 6-column catalog:
+**Custom target catalogs**: Replace `Pisces_080925.fits` with your own 6-column catalog:
 - Required columns: `SOURCE_ID`, `RA`, `DEC`, `GAIA_REV_ID`, `PS1_ID`, `PRIORITY`
 - Format: FITS binary table
 
@@ -284,19 +287,22 @@ Most data is accessed via web URLs or can be queried from astronomical databases
 
 The complete pipeline produces two complementary catalogs:
 
-### Target Selection Catalog (`Pisces_021023.fits`)
+### Target Selection Catalog (`Pisces_080925.fits` - Latest)
 - **14,952 stellar targets** across 5 categories in optimized survey region
 - **6 essential columns**: SOURCE_ID, RA, DEC, GAIA_REV_ID, PS1_ID, PRIORITY
 - **Science priorities**: Hierarchical ranking system (priorities 7-10)
 - **Size**: ~710 KB, ready for target selection analysis
 
-### Enhanced WEAVE Catalog (`Pisces_WEAVE_enhanced_021023.fits`)  
+### Enhanced WEAVE Catalog (`Pisces_WEAVE_enhanced_080925.fits` - Latest)  
 - **Same 14,952 targets** with complete observational metadata
 - **78 detailed columns**: Full Gaia EDR3 astrometry, multi-band photometry, WEAVE survey parameters
 - **Database-enriched**: Live cross-matches with Gaia, PS1, SDSS catalogs via wsdb.ast.cam.ac.uk
 - **Extinction-corrected**: SFD dust map corrections for precise stellar parameters
 - **WEAVE-ready**: Complete format compliance for fiber allocation and spectroscopic pipeline
-- **Size**: ~12 MB, production-ready for WEAVE observations
+- **Size**: ~10.5 MB, production-ready for WEAVE observations
+
+### Previous Versions
+- `Pisces_021023.fits` and `Pisces_WEAVE_enhanced_021023.fits` - Earlier versions maintained for reference
 
 ### Key Enhancements in WEAVE Catalog
 - **Precision astrometry**: Gaia proper motions (±0.1 mas/yr), parallaxes (±0.1 mas)
